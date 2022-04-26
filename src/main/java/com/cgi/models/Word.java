@@ -1,4 +1,4 @@
-package com.cgi;
+package com.cgi.models;
 
 public class Word {
 
