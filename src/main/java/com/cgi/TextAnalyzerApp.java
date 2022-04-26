@@ -17,6 +17,7 @@ public class TextAnalyzerApp
         TextFileReader read = new TextFileReader();
 
         read.showWordList();
+        read.showWordListReverse();
 
     }
 }

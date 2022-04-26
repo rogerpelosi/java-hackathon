@@ -31,7 +31,7 @@ public class TextFileReader {
           wordList.add(new Word(val.toLowerCase(), 1));
       }
 
-      System.out.println(wordList);
+//      System.out.println(wordList);
 
       while(bReader.ready()){
           String[] wordsByLine = bReader.readLine().split("[,.:; ]");
@@ -74,14 +74,28 @@ public class TextFileReader {
 
         List<Word> condensedAndAlphabetizedList = condensedList.stream().sorted(Comparator.comparing(Word::getTheWordItself)).collect(Collectors.toList());
 
-        System.out.println(wordList.size());
-        System.out.println(condensedList);
-        System.out.println(condensedAndAlphabetizedList);
+//        System.out.println(wordList.size());
+//        System.out.println(condensedList);
+//        System.out.println(condensedAndAlphabetizedList);
         returnedWordList.setWordList(condensedAndAlphabetizedList);
 
       bReader.close();
       fReader.close();
       return returnedWordList;
+
+    }
+
+    public WordList showWordListReverse() throws IOException {
+
+        WordList initialWordList = showWordList();
+        WordList newWordList = new WordList();
+        List<Word> pls = initialWordList.getWordList();
+
+        newWordList.setWordList(pls.stream().sorted((o1, o2) -> o2.getTheWordItself().compareTo(o1.getTheWordItself())).collect(Collectors.toList()));
+        //pls.stream().sorted((o1, o2) -> o2.getTheWordItself().compareTo(o1.getTheWordItself())).collect(Collectors.toList());
+
+        System.out.println(newWordList);
+        return newWordList;
 
     }
 
