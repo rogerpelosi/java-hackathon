@@ -78,6 +78,7 @@ public class TextFileReader {
 //        System.out.println(condensedList);
 //        System.out.println(condensedAndAlphabetizedList);
         returnedWordList.setWordList(condensedAndAlphabetizedList);
+        //System.out.println("showWordList() "+returnedWordList);
 
       bReader.close();
       fReader.close();
@@ -94,7 +95,29 @@ public class TextFileReader {
         newWordList.setWordList(pls.stream().sorted((o1, o2) -> o2.getTheWordItself().compareTo(o1.getTheWordItself())).collect(Collectors.toList()));
         //pls.stream().sorted((o1, o2) -> o2.getTheWordItself().compareTo(o1.getTheWordItself())).collect(Collectors.toList());
 
-        System.out.println(newWordList);
+        //System.out.println("showWordListReverse() "+newWordList);
+        return newWordList;
+
+    }
+
+    public WordList showFrequentWords() throws IOException{
+
+        WordList initialWordList = showWordList();
+        WordList newWordList = new WordList();
+        List<Word> pls = initialWordList.getWordList();
+
+        List<Word> ugh = pls.stream().sorted((x,y)->{
+            if(x.getSingularWordOccurrence() > y.getSingularWordOccurrence()){
+                return -1;
+            } else if(x.getSingularWordOccurrence() == y.getSingularWordOccurrence()){
+                return x.getTheWordItself().compareTo(y.getTheWordItself());
+                //return 0;
+            } else {return 1;}
+        }).collect(Collectors.toList());
+
+       newWordList.setWordList(ugh);
+        //System.out.println("showFrequentWords() "+newWordList);
+
         return newWordList;
 
     }

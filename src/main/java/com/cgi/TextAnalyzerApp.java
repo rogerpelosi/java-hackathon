@@ -16,8 +16,12 @@ public class TextAnalyzerApp
 
         TextFileReader read = new TextFileReader();
 
-        read.showWordList();
+        //read.showWordList();
+        System.out.println("Alphabetical Word List: " + read.showWordList());
         read.showWordListReverse();
+        System.out.println("Reverse Alphabetized Word List: " + read.showWordListReverse());
+        //read.showFrequentWords();
+        System.out.println("Word List By Frequency, Then Alphabetized: " + read.showFrequentWords());
 
     }
 }
