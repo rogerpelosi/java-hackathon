@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class TextFileReader {
 
       String[] firstLine = bReader.readLine().split("[,.:; ]");
       for(String val: firstLine){
-          wordList.add(new Word(val, 1));
+          wordList.add(new Word(val.toLowerCase(), 1));
       }
 
       System.out.println(wordList);
@@ -71,9 +72,12 @@ public class TextFileReader {
 //          }
 //      });
 
+        List<Word> condensedAndAlphabetizedList = condensedList.stream().sorted(Comparator.comparing(Word::getTheWordItself)).collect(Collectors.toList());
+
         System.out.println(wordList.size());
         System.out.println(condensedList);
-        returnedWordList.setWordList(condensedList);
+        System.out.println(condensedAndAlphabetizedList);
+        returnedWordList.setWordList(condensedAndAlphabetizedList);
 
       bReader.close();
       fReader.close();
