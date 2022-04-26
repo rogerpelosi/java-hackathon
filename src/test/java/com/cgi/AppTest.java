@@ -1,4 +1,4 @@
-package org.example;
+package com.cgi;
 
 import static org.junit.Assert.assertTrue;
 
